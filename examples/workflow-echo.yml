@@ -21,7 +21,7 @@ jobs:
 
       - name: kodama echo (summary)
         id: echo
-        uses: levmichael3/kodama@V1.1
+        uses: levmichael3/kodama@v1.1
         with:
           mode: summary
 
