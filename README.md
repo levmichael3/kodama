@@ -89,7 +89,7 @@ Copy [`examples/workflow-echo.yml`](examples/workflow-echo.yml) into your repo's
 
 | Input       | Default   | Meaning                                                        |
 | :---------- | :-------- | :------------------------------------------------------------- |
-| `mode`      | `summary` | `summary` (signals), `review` (file focus), `calm` (one step) |
+| `mode`      | `summary` | `summary` (signals), `review` (file focus), `calm` (one step)  |
 | `context`   | `""`      | Extra context echoed back verbatim (SLOs, decisions, notes)    |
 | `max_files` | `20`      | Maximum changed files listed                                   |
 | `base_sha`  | `""`      | Base commit SHA — auto on PRs; explicit for push events        |
