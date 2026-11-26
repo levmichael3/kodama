@@ -19,48 +19,48 @@ install_skill() {
 install_command() {
   local cmd_dir="$1"
   mkdir -p "$cmd_dir"
-  cat >"$cmd_dir/ops-bro.md" <<'EOF'
+  cat >"$cmd_dir/kodama.md" <<'EOF'
 ---
 description: Re-explain the last reply or pasted DevOps/infra text in plain human language with all technical facts intact.
 ---
-Read and apply the `ops-bro` skill in `/ops-bro` translation mode to the previous assistant response (or the text below if provided). Keep all commands, flags, file paths, and error codes verbatim.
+Read and apply the `kodama` skill in `/kodama` translation mode to the previous assistant response (or the text below if provided). Keep all commands, flags, file paths, and error codes verbatim.
 
 $ARGUMENTS
 EOF
-  echo "Installed slash command -> $cmd_dir/ops-bro.md"
+  echo "Installed slash command -> $cmd_dir/kodama.md"
 }
 
 installed_any=false
 
 # Claude Code
 if [[ -d "$HOME/.claude" ]] || command -v claude >/dev/null 2>&1; then
-  install_skill "$HOME/.claude/skills/ops-bro"
+  install_skill "$HOME/.claude/skills/kodama"
   install_command "$HOME/.claude/commands"
   installed_any=true
 fi
 
 # Cursor
 if [[ -d "$HOME/.cursor" ]] || command -v cursor >/dev/null 2>&1; then
-  install_skill "$HOME/.cursor/skills/ops-bro"
+  install_skill "$HOME/.cursor/skills/kodama"
   installed_any=true
 fi
 
 # OpenCode (note: singular `command`, not `commands`)
 if [[ -d "$HOME/.config/opencode" ]] || command -v opencode >/dev/null 2>&1; then
-  install_skill "$HOME/.config/opencode/skills/ops-bro"
+  install_skill "$HOME/.config/opencode/skills/kodama"
   install_command "$HOME/.config/opencode/command"
   installed_any=true
 fi
 
 # OpenAI Codex
 if [[ -d "$HOME/.codex" ]] || command -v codex >/dev/null 2>&1; then
-  install_skill "$HOME/.codex/skills/ops-bro"
+  install_skill "$HOME/.codex/skills/kodama"
   installed_any=true
 fi
 
 # Hermes Agent
 if [[ -d "$HOME/.hermes" ]]; then
-  install_skill "$HOME/.hermes/skills/ops-bro"
+  install_skill "$HOME/.hermes/skills/kodama"
   installed_any=true
 fi
 
@@ -70,4 +70,4 @@ if [[ "$installed_any" == false ]]; then
   exit 1
 fi
 
-echo "Done. Restart your agent session and use /ops-bro anytime."
+echo "Done. Restart your agent session and use /kodama anytime."

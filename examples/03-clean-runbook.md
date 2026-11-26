@@ -4,7 +4,7 @@
 
 > Write a short, clean runbook for high 5xx error rates on our ingress gateway.
 
-## `ops-bro` (Clean Artifact Mode)
+## `kodama` (Clean Artifact Mode)
 
 ## Runbook: Ingress Gateway Elevated 5xx Rate
 

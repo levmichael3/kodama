@@ -1,6 +1,6 @@
-# Contributing to ops-bro
+# Contributing to kodama 🌳
 
-Thanks for helping make `ops-bro` sharper. The most valuable contribution is a **new operational example** — a real incident pattern, failure mode, or runbook that teaches the skill how to talk like a Principal SRE.
+Thanks for helping the forest echo back more clearly. The most valuable contribution is a **new operational example** — a real incident pattern, failure mode, or runbook that teaches the skill how to talk like a Principal SRE.
 
 Every contribution also grows your [GitAnimals](https://www.gitanimals.org/) pets: 30 commits adopt a new pet, and each contribution levels them up. Connect your GitHub account on [gitanimals.org](https://www.gitanimals.org/) to start your farm.
 
@@ -14,13 +14,13 @@ Examples live in `examples/` and are numbered sequentially:
 examples/01-k8s-crashloop.md
 examples/02-iac-state-lock.md
 examples/03-clean-runbook.md
-examples/04-bloated-ticket-to-adr.md
+examples/04-wordy-ticket-to-adr.md
 examples/05-your-new-pattern.md   <-- yours
 ```
 
 ### 1. Pick a real pattern
 
-Good topics: `ImagePullBackOff` loops, PVC `Pending` binds, Terraform drift after manual console edits, Helm release stuck in `pending-install`, ingress `504` storms, OOMKilled sidecars, expired cert-manager certs, GitOps sync loops, flaky canary analysis, error-budget burn alerts, over-engineered stakeholder tickets hiding a single bottleneck.
+Good topics: `ImagePullBackOff` loops, PVC `Pending` binds, Terraform drift after manual console edits, Helm release stuck in `pending-install`, ingress `504` storms, OOMKilled sidecars, expired cert-manager certs, GitOps sync loops, flaky canary analysis, error-budget burn alerts, broad stakeholder tickets that need distilling into a crisp ADR.
 
 Bad topics: anything tied to a single cloud vendor's proprietary console, marketing comparisons, or hypothetical errors you haven't seen in the wild.
 
@@ -31,22 +31,22 @@ Every example file **must** contain all three parts:
 ```markdown
 # Example N: Short Title with `exact terms`
 
-### User
+## User
 
 > <the raw user prompt, incident report, or error — keep it realistic>
 
-### `ops-bro` (Default Pinpoint Mode | Clean Artifact Mode)
+## `kodama` (Default Pinpoint Mode | Clean Artifact Mode)
 
 <the pinpoint SRE answer: BLUF first, exact commands/flags/paths verbatim,
 safety warnings before destructive ops>
 
 ---
 
-### User
+## User
 
-> `/ops-bro` (+ optional pasted text)
+> `/kodama` (+ optional pasted text)
 
-### `ops-bro` (Plain-Language Translation)
+## `kodama` (Plain-Language Translation)
 
 <the same answer re-explained like a sharp teammate over coffee —
 every command, flag, path, port, and exit code 100% verbatim>
@@ -59,7 +59,7 @@ every command, flag, path, port, and exit code 100% verbatim>
 - **Safety first.** Any `destroy`, `kubectl delete`, `force-unlock`, or force-push gets a dry-run / `plan` step and a warning.
 - **Vendor-agnostic.** Prefer Kubernetes APIs, OCI, declarative HCL, GitOps, OpenTelemetry, POSIX tools. Name a vendor only when the user did.
 
-**Rules for the `/ops-bro` translation:**
+**Rules for the `/kodama` translation:**
 
 - Re-explain, don't re-answer. No new tools, no new diagnosis.
 - Take the space clarity needs — simpler, not necessarily shorter.
@@ -85,7 +85,7 @@ python3 -c "
 import re
 t = open('SKILL.md').read()
 m = re.match(r'^---\n(.*?)\n---\n', t, re.DOTALL)
-assert m and 'name: ops-bro' in m.group(1), 'frontmatter broken'
+assert m and 'name: kodama' in m.group(1), 'frontmatter broken'
 print('frontmatter OK')
 "
 
@@ -93,7 +93,7 @@ print('frontmatter OK')
 npx markdownlint-cli2 "README.md" "CONTRIBUTING.md" "SKILL.md" "examples/**/*.md"
 ```
 
-CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) runs the same checks via ShellCheck, a frontmatter validator, and `DavidAnson/markdownlint-cli2-action@v19` on every push to `main` and every PR.
+CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) runs the same checks via ShellCheck, a frontmatter validator, and `DavidAnson/markdownlint-cli2-action` on every push to `main` and every PR.
 
 ---
 
@@ -108,7 +108,7 @@ CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) runs the same checks
 ## Pull request checklist
 
 - [ ] Example filename is next sequential number (`NN-slug.md`, currently `05-...`).
-- [ ] File has User prompt → pinpoint answer → `/ops-bro` → plain translation.
+- [ ] File has User prompt → pinpoint answer → `/kodama` → plain translation.
 - [ ] All commands, flags, paths, ports, exit codes identical in both modes.
 - [ ] README `## Examples` bullet added.
 - [ ] `shellcheck install.sh` passes (if touched).

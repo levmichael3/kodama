@@ -1,26 +1,28 @@
-# 🤙 ops-bro
+# 🌳 kodama 木霊
 
-**Pinpoint, vendor-agnostic DevOps & SRE speak — plus `/ops-bro` to translate dense logs, errors, and jargon into plain language without losing a single flag.**
+**Pinpoint, vendor-agnostic DevOps & SRE speak — plus `/kodama` to translate dense logs, errors, and jargon into plain language without losing a single flag.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Format: Agent Skill](https://img.shields.io/badge/Format-Agent_Skill-blue.svg)](SKILL.md)
 [![Works with](https://img.shields.io/badge/Works_with-Claude_Cursor_OpenCode_Codex-lightgrey.svg)](#compatibility--installation)
-[![CI](https://github.com/levmichael3/ops-bro/actions/workflows/ci.yml/badge.svg)](https://github.com/levmichael3/ops-bro/actions/workflows/ci.yml)
+[![CI](https://github.com/levmichael3/kodama/actions/workflows/ci.yml/badge.svg)](https://github.com/levmichael3/kodama/actions/workflows/ci.yml)
 
-> Replace `levmichael3` in the badge URLs and install commands below with your actual GitHub username or org.
+> *Kodama (木霊) — the tree spirit of Japanese folklore. It lives in old trees,
+> and its voice is the echo that answers you back from the forest. Speak your
+> densest logs into the trees; a clear voice answers back.*
 
 ---
 
-## Why ops-bro?
+## Why kodama?
 
-AI agents usually fail DevOps in one of two ways: they either drown you in corporate fluff ("In today's dynamic cloud-native ecosystem...") or dump a wall of raw telemetry and acronyms at 3 AM when production is on fire.
+AI agents usually fail DevOps in one of two ways: they either drown you in filler ("In today's dynamic cloud-native ecosystem...") or dump a wall of raw telemetry and acronyms at 3 AM when production is on fire.
 
-`ops-bro` is a single-file Agent Skill ([`SKILL.md`](SKILL.md)) that gives your AI coding partner three sharp modes:
+`kodama` is a single-file Agent Skill ([`SKILL.md`](SKILL.md)) that gives your AI coding partner three sharp modes:
 
 1. **Pinpoint DevOps & SRE Speak (Default):** Leads with the bottom line, uses exact vendor-agnostic operational vocabulary (Kubernetes, declarative IaC, CI/CD, GitOps, OpenTelemetry), and flags destructive actions before you run them.
-2. **Clean Artifact Mode:** Automatically formats runbooks, postmortems (RCAs), and Architecture Decision Records (ADRs) into scannable, zero-bloat docs that both engineers and stakeholders can read.
-3. **`/ops-bro` Plain-Language Mode:** Inspired by [`luchasarie/bro-skill`](https://github.com/luchasarie/bro-skill).
-   Type `/ops-bro` after a dense reply — or paste a raw stack trace, state-lock error, or RFC after `/ops-bro` — to get it explained like a sharp teammate over coffee, while keeping every command, path, port, and exit code **100% verbatim**.
+2. **Clean Artifact Mode:** Turns incident notes, runbooks, postmortems (RCAs), and Architecture Decision Records (ADRs) into scannable, zero-bloat docs that both engineers and stakeholders can read.
+3. **`/kodama` Plain-Language Mode:** Inspired by [`luchasarie/bro-skill`](https://github.com/luchasarie/bro-skill).
+   Type `/kodama` after a dense reply — or paste a raw stack trace, state-lock error, or RFC after `/kodama` — to get it explained like a sharp teammate over coffee, while keeping every command, path, port, and exit code **100% verbatim**.
 
 **What it is:** a portable skill + slash-command pair. No dependencies, no API keys, no cloud lock-in.
 **What it isn't:** a SaaS product, a monitoring agent, or a replacement for reading your alerts.
@@ -31,53 +33,53 @@ AI agents usually fail DevOps in one of two ways: they either drown you in corpo
 
 Supported platforms include Claude Code, Cursor, OpenCode, OpenAI Codex, and Hermes Agent, with corresponding skill paths and invocation commands detailed below.
 
-| Tool             | Skill location                               | Slash command / invocation                           |
-| :--------------- | :------------------------------------------- | :--------------------------------------------------- |
-| **Claude Code**  | `~/.claude/skills/ops-bro/SKILL.md`          | `/ops-bro` (`~/.claude/commands/ops-bro.md`)         |
-| **Cursor**       | `~/.cursor/skills/ops-bro/SKILL.md`          | `/ops-bro`                                           |
-| **OpenCode**     | `~/.config/opencode/skills/ops-bro/SKILL.md` | `/ops-bro` (`~/.config/opencode/command/ops-bro.md`) |
-| **OpenAI Codex** | `~/.codex/skills/ops-bro/SKILL.md`           | `$ops-bro` or via `/skills`                          |
-| **Hermes Agent** | `~/.hermes/skills/ops-bro/SKILL.md`          | Auto-loaded skill                                    |
+| Tool             | Skill location                              | Slash command / invocation                         |
+| :--------------- | :------------------------------------------ | :------------------------------------------------- |
+| **Claude Code**  | `~/.claude/skills/kodama/SKILL.md`          | `/kodama` (`~/.claude/commands/kodama.md`)         |
+| **Cursor**       | `~/.cursor/skills/kodama/SKILL.md`          | `/kodama`                                          |
+| **OpenCode**     | `~/.config/opencode/skills/kodama/SKILL.md` | `/kodama` (`~/.config/opencode/command/kodama.md`) |
+| **OpenAI Codex** | `~/.codex/skills/kodama/SKILL.md`           | `$kodama` or via `/skills`                         |
+| **Hermes Agent** | `~/.hermes/skills/kodama/SKILL.md`          | Auto-loaded skill                                  |
 
 > **Note:** OpenCode uses the singular `command/` directory (not `commands/`). The installer handles this for you.
 
 ### Quick Install
 
-**One-liner** — detects which AI coding tools are installed and drops `ops-bro` into each:
+**One-liner** — detects which AI coding tools are installed and drops `kodama` into each:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/levmichael3/ops-bro/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/levmichael3/kodama/main/install.sh | bash
 ```
 
 **From a clone:**
 
 ```bash
-git clone https://github.com/levmichael3/ops-bro.git
-cd ops-bro
+git clone https://github.com/levmichael3/kodama.git
+cd kodama
 chmod +x install.sh
 ./install.sh
 ```
 
-Restart your agent session after installing, then type `/ops-bro` anytime.
+Restart your agent session after installing, then type `/kodama` anytime.
 
 ---
 
-## Examples
+## Examples 🌲
 
-Refer to the included examples and MIT LICENSE for further reference:
+Each example shows the pinpoint answer first, then the `/kodama` plain-language echo:
 
-- [`examples/01-k8s-crashloop.md`](examples/01-k8s-crashloop.md) — Kubernetes `CrashLoopBackOff` diagnosis, then `/ops-bro` plain-language translation.
-- [`examples/02-iac-state-lock.md`](examples/02-iac-state-lock.md) — Pasting a raw declarative IaC state-lock error into `/ops-bro`.
+- [`examples/01-k8s-crashloop.md`](examples/01-k8s-crashloop.md) — Kubernetes `CrashLoopBackOff` diagnosis, then `/kodama` plain-language translation.
+- [`examples/02-iac-state-lock.md`](examples/02-iac-state-lock.md) — Pasting a raw declarative IaC state-lock error into `/kodama`.
 - [`examples/03-clean-runbook.md`](examples/03-clean-runbook.md) — Zero-bloat ingress-gateway 5xx runbook via Clean Artifact Mode.
-- [`examples/04-bloated-ticket-to-adr.md`](examples/04-bloated-ticket-to-adr.md) — Over-engineered Jira ticket distilled into a crisp ADR, then `/ops-bro` translation.
+- [`examples/04-wordy-ticket-to-adr.md`](examples/04-wordy-ticket-to-adr.md) — A broad stakeholder ticket distilled into a crisp ADR, then `/kodama` translation.
 
-### Example: Kubernetes `CrashLoopBackOff` + `/ops-bro`
+### Example: Kubernetes `CrashLoopBackOff` + `/kodama`
 
 **User:**
 
 > Pod `checkout-worker-7d9f8b6c4-x2k9p` is stuck in `CrashLoopBackOff` right after deploy. Logs cut off mid-startup.
 
-**`ops-bro` (Default Pinpoint Mode):**
+**`kodama` (Default Pinpoint Mode):**
 
 > The container is likely hitting either a premature `livenessProbe` failure during cold start or an `OOMKilled` (`Exit Code 137`) event before flushing stdout.
 >
@@ -93,9 +95,9 @@ Refer to the included examples and MIT LICENSE for further reference:
 
 **User:**
 
-> `/ops-bro`
+> `/kodama`
 
-**`ops-bro` (Plain-Language Translation):**
+**`kodama` (Plain-Language Translation):**
 
 > Your `checkout-worker-7d9f8b6c4-x2k9p` pod is dying during startup before it even finishes printing its logs, so Kubernetes keeps restarting it over and over (`CrashLoopBackOff`). There are two usual suspects: either it ran out of RAM (`OOMKilled` / `Exit Code 137`), or Kubernetes asked "are you alive yet?" too early (`Liveness probe failed`) and killed it while it was still booting up.
 >
@@ -103,7 +105,9 @@ Refer to the included examples and MIT LICENSE for further reference:
 
 ---
 
-## Core rules baked in
+## Core rules baked in 🌿
+
+Like rings in an old tree, these never change:
 
 - **Bottom Line Up Front (BLUF):** Root cause or action in sentence one. Zero throat-clearing.
 - **Vendor-agnostic:** Built around open primitives (Kubernetes, OCI, declarative HCL/IaC, GitOps, OpenTelemetry) rather than proprietary cloud lock-in.
@@ -117,15 +121,15 @@ Refer to the included examples and MIT LICENSE for further reference:
 
 The repository includes [`.github/workflows/ci.yml`](.github/workflows/ci.yml) configured to trigger on pushes to `main` and pull requests. It runs:
 
-- **ShellCheck** via `ludeeus/action-shellcheck@master` on `install.sh`.
-- **Frontmatter & structure validation** via an inline Python script that verifies `SKILL.md` starts with valid YAML frontmatter containing the required keys (`name: ops-bro`, `description:`).
-- **Markdown linting** via `DavidAnson/markdownlint-cli2-action@v19` across root and example Markdown files.
+- **ShellCheck** via `ludeeus/action-shellcheck` on `install.sh`.
+- **Frontmatter & structure validation** via an inline Python script that verifies `SKILL.md` starts with valid YAML frontmatter containing the required keys (`name: kodama`, `description:`).
+- **Markdown linting** via `DavidAnson/markdownlint-cli2-action` across root and example Markdown files.
 
 ---
 
 ## Contributing
 
-Want to add a new runbook, incident pattern, or IaC failure mode? See [CONTRIBUTING.md](CONTRIBUTING.md) for example format, naming (`NN-slug.md`), and the `/ops-bro` translation requirement.
+Want to add a new runbook, incident pattern, or IaC failure mode? See [CONTRIBUTING.md](CONTRIBUTING.md) for example format, naming (`NN-slug.md`), and the `/kodama` translation requirement.
 
 ---
 
@@ -135,10 +139,10 @@ Every contribution grows a pet! This repo supports [GitAnimals](https://www.gita
 
 [![GitAnimals Farm](https://render.gitanimals.org/farms/levmichael3)](https://www.gitanimals.org/en-US/farm/levmichael3)
 
-> After forking, [connect your GitHub account on gitanimals.org](https://www.gitanimals.org/), then replace `ops-bro` in the image URL above with your own farm name to show your pets here.
+> After forking, [connect your GitHub account on gitanimals.org](https://www.gitanimals.org/), then replace `kodama` in the image URL above with your own farm name to show your pets here.
 
 ---
 
 ## Credits & License
 
-Inspired by [`luchasarie/bro-skill`](https://github.com/luchasarie/bro-skill). Released under the [MIT License](LICENSE).
+Inspired by [`luchasarie/bro-skill`](https://github.com/luchasarie/bro-skill) and named for the [kodama (木霊), the tree spirit of Japanese folklore](https://hyakumonogatari.com/2012/08/05/kodama-the-tree-spirit/) — the echo that answers back from the forest. Released under the [MIT License](LICENSE).

@@ -1,8 +1,8 @@
-# Example 2: Pasting a Raw IaC State Lock Error into `/ops-bro`
+# Example 2: Pasting a Raw IaC State Lock Error into `/kodama`
 
 ## User
 
-> `/ops-bro`
+> `/kodama`
 >
 > ```text
 > Error: Error acquiring the state lock
@@ -16,7 +16,7 @@
 >   Created:   2026-11-26 09:42:11.104821 +0000 UTC
 > ```
 
-## `ops-bro` (Plain-Language Translation)
+## `kodama` (Plain-Language Translation)
 
 Your IaC tool refused to run because another process (`ci-runner@build-node-04`) locked the state file `prod/network/terraform.tfstate` at `09:42:11 UTC` while running an `OperationTypeApply`. State locks exist so two people or pipelines don't overwrite your infrastructure state at the exact same time and corrupt it.
 
