@@ -42,13 +42,13 @@ AI agents usually fail DevOps in one of two ways: they either drown you in fille
 
 Supported platforms include Claude Code, Cursor, OpenCode, OpenAI Codex, and Hermes Agent, with corresponding skill paths and invocation commands detailed below.
 
-| Tool             | Skill location                              | Slash command / invocation                         |
-| :--------------- | :------------------------------------------ | :------------------------------------------------- |
+| Tool             | Skill location                              | Slash command / invocation                     |
+| :--------------- | :------------------------------------------ | :--------------------------------------------- |
 | **Claude Code**  | `~/.claude/skills/kodama/SKILL.md`          | `/echo` (`~/.claude/commands/echo.md`)         |
-| **Cursor**       | `~/.cursor/skills/kodama/SKILL.md`          | `/echo`                                          |
+| **Cursor**       | `~/.cursor/skills/kodama/SKILL.md`          | `/echo`                                        |
 | **OpenCode**     | `~/.config/opencode/skills/kodama/SKILL.md` | `/echo` (`~/.config/opencode/command/echo.md`) |
-| **OpenAI Codex** | `~/.codex/skills/kodama/SKILL.md`           | `/echo` or via `/skills`                         |
-| **Hermes Agent** | `~/.hermes/skills/kodama/SKILL.md`          | Auto-loaded skill                                  |
+| **OpenAI Codex** | `~/.codex/skills/kodama/SKILL.md`           | `/echo` or via `/skills`                       |
+| **Hermes Agent** | `~/.hermes/skills/kodama/SKILL.md`          | Auto-loaded skill                              |
 
 > **Note:** OpenCode uses the singular `command/` directory (not `commands/`). The installer handles this for you.
 
@@ -87,11 +87,11 @@ The same forest spirit, running natively in your CI. `kodama echo` cuts through 
 
 Copy [`examples/workflow-echo.yml`](examples/workflow-echo.yml) into your repo's `.github/workflows/` to post the echo as a PR comment on every pull request.
 
-| Input     | Default     | Meaning                                                        |
-| :-------- | :---------- | :------------------------------------------------------------- |
-| `mode`    | `summary`   | `summary` (signals), `review` (file focus), `calm` (one step)  |
-| `context` | `""`        | Extra context echoed back verbatim (SLOs, decisions, notes)    |
-| `max_files` | `20`      | Maximum changed files listed                                   |
+| Input       | Default   | Meaning                                                       |
+| :---------- | :-------- | :------------------------------------------------------------ |
+| `mode`      | `summary` | `summary` (signals), `review` (file focus), `calm` (one step) |
+| `context`   | `""`      | Extra context echoed back verbatim (SLOs, decisions, notes)   |
+| `max_files` | `20`      | Maximum changed files listed                                  |
 
 The echo is available as step output (`steps.echo.outputs.echo`) and in the job summary.
 
