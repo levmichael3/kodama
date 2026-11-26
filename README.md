@@ -92,7 +92,7 @@ Copy [`examples/workflow-echo.yml`](examples/workflow-echo.yml) into your repo's
 | `mode`      | `summary` | `summary` (signals), `review` (file focus), `calm` (one step) |
 | `context`   | `""`      | Extra context echoed back verbatim (SLOs, decisions, notes)    |
 | `max_files` | `20`      | Maximum changed files listed                                   |
-| `base_sha`  | `""`      | Base commit SHA — auto-detected on PRs; set explicitly for push events |
+| `base_sha`  | `""`      | Base commit SHA — auto on PRs; explicit for push events        |
 
 The echo is available as step output (`steps.echo.outputs.echo`) and in the job summary.
 
