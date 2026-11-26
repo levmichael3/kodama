@@ -20,6 +20,21 @@ jobs:
           scandir: "."
           severity: warning
 
+  echo-smoke:
+    name: echo.sh smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7 # ratchet:actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Run echo.sh against real git range and assert output
+        run: |
+          output=$(GITHUB_BASE_SHA=$(git rev-parse HEAD~1) GITHUB_SHA=$(git rev-parse HEAD) bash ./echo.sh)
+          echo "$output"
+          [[ "$output" == *"kodama echo"* ]]   || { echo "MISSING: header" >&2; exit 1; }
+          [[ "$output" == *"Commits"* ]]        || { echo "MISSING: Commits section" >&2; exit 1; }
+          [[ "$output" == *"Changed files"* ]]  || { echo "MISSING: Changed files section" >&2; exit 1; }
+
   skill-frontmatter:
     name: Validate SKILL.md frontmatter & structure
     runs-on: ubuntu-latest
