@@ -19,6 +19,10 @@ inputs:
     description: "Maximum number of changed files to read for signal extraction."
     required: false
     default: "20"
+  base_sha:
+    description: "Base commit SHA for the diff. Defaults to the PR base on pull_request events; set explicitly for push or other events."
+    required: false
+    default: ""
 
 outputs:
   echo:
@@ -33,5 +37,6 @@ runs:
         KODAMA_MODE: ${{ inputs.mode }}
         KODAMA_CONTEXT: ${{ inputs.context }}
         KODAMA_MAX_FILES: ${{ inputs.max_files }}
+        GITHUB_BASE_SHA: ${{ inputs.base_sha || github.event.pull_request.base.sha }}
       run: |
         "${{ github.action_path }}/echo.sh"
