@@ -21,9 +21,11 @@ install_command() {
   mkdir -p "$cmd_dir"
   cat >"$cmd_dir/echo.md" <<'EOF'
 ---
-description: Re-explain the last reply or pasted DevOps/infra text in plain human language with all technical facts intact.
+description: Call the forest spirits — kodama echoes back the signal, clears the noise, keeps your cognitive load down.
 ---
-Read and apply the `kodama` skill in `/echo` translation mode to the previous assistant response (or the text below if provided). Keep all commands, flags, file paths, and error codes verbatim.
+The forest is listening. Call on kodama to echo back what was just said — or the text below — in plain, human language. Every command, flag, file path, port, and exit code stays verbatim. The noise falls away. The signal remains. Your mind stays clear.
+
+Read and apply the `kodama` skill in `/echo` translation mode.
 
 $ARGUMENTS
 EOF
