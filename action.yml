@@ -23,6 +23,10 @@ inputs:
     description: "Base commit SHA for the diff. Defaults to the PR base on pull_request events; set explicitly for push or other events."
     required: false
     default: ""
+  anthropic_api_key:
+    description: "Optional Anthropic API key. When set, adds one warm AI-generated sentence of insight above the commit list. Leave empty to run without AI."
+    required: false
+    default: ""
 
 outputs:
   echo:
@@ -38,5 +42,6 @@ runs:
         KODAMA_CONTEXT: ${{ inputs.context }}
         KODAMA_MAX_FILES: ${{ inputs.max_files }}
         GITHUB_BASE_SHA: ${{ inputs.base_sha || github.event.pull_request.base.sha }}
+        ANTHROPIC_API_KEY: ${{ inputs.anthropic_api_key }}
       run: |
         "${{ github.action_path }}/echo.sh"
