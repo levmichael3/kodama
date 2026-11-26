@@ -1,3 +1,7 @@
+<p align="center">
+  <img src=".github/assets/image_33bd24b3.jpg" alt="kodama logo — a small white tree spirit on a circuit-board medallion, holding a terminal prompt" width="240" />
+</p>
+
 # 🌳 kodama 木霊
 
 **Pinpoint, vendor-agnostic DevOps & SRE speak — plus `/kodama` to translate dense logs, errors, and jargon into plain language without losing a single flag.**
