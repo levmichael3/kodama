@@ -10,7 +10,7 @@
 [![Format: Agent Skill](https://img.shields.io/badge/Format-Agent_Skill-blue.svg)](SKILL.md)
 [![Works with](https://img.shields.io/badge/Works_with-Claude_Cursor_OpenCode_Codex-lightgrey.svg)](#compatibility--installation)
 [![CI](https://github.com/levmichael3/kodama/actions/workflows/ci.yml/badge.svg)](https://github.com/levmichael3/kodama/actions/workflows/ci.yml)
-[![kodama echo](https://img.shields.io/badge/Action-kodama_echo-green.svg)](#github-action---kodama-echo)
+[![kodama echo](https://img.shields.io/badge/Action-kodama_echo-green.svg)](#github-action-kodama-echo)
 
 > *Kodama (木霊) — the tree spirit of Japanese folklore. It lives in old trees,
 > and its voice is the echo that answers you back from the forest.*
@@ -73,7 +73,7 @@ Restart your agent session after installing, then type `/echo` anytime.
 
 ---
 
-## GitHub Action — `kodama echo` 🌲
+## GitHub Action: `kodama echo`
 
 The same forest spirit, running natively in your CI. `kodama echo` cuts through PR noise and echoes back actionable signals — commits, changed files, diff stats — BLUF-first, facts verbatim. No AI calls, no network, no secrets required.
 
