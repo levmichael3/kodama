@@ -80,18 +80,19 @@ The same forest spirit, running natively in your CI. `kodama echo` cuts through 
 ```yaml
 - name: kodama echo (summary)
   id: echo
-  uses: levmichael3/kodama@v1
+  uses: levmichael3/kodama@v1.2
   with:
     mode: summary # or: review | calm
 ```
 
 Copy [`examples/workflow-echo.yml`](examples/workflow-echo.yml) into your repo's `.github/workflows/` to post the echo as a PR comment on every pull request.
 
-| Input       | Default   | Meaning                                                       |
-| :---------- | :-------- | :------------------------------------------------------------ |
+| Input       | Default   | Meaning                                                        |
+| :---------- | :-------- | :------------------------------------------------------------- |
 | `mode`      | `summary` | `summary` (signals), `review` (file focus), `calm` (one step) |
-| `context`   | `""`      | Extra context echoed back verbatim (SLOs, decisions, notes)   |
-| `max_files` | `20`      | Maximum changed files listed                                  |
+| `context`   | `""`      | Extra context echoed back verbatim (SLOs, decisions, notes)    |
+| `max_files` | `20`      | Maximum changed files listed                                   |
+| `base_sha`  | `""`      | Base commit SHA — auto-detected on PRs; set explicitly for push events |
 
 The echo is available as step output (`steps.echo.outputs.echo`) and in the job summary.
 
@@ -154,7 +155,8 @@ Like rings in an old tree, these never change:
 
 The repository includes [`.github/workflows/ci.yml`](.github/workflows/ci.yml) configured to trigger on pushes to `main` and pull requests. It runs:
 
-- **ShellCheck** via `ludeeus/action-shellcheck` on `install.sh`.
+- **ShellCheck** via `ludeeus/action-shellcheck` on all shell scripts.
+- **`echo.sh` smoke test** — runs `echo.sh` with a real `HEAD~1..HEAD` range and asserts commits, changed-files, and header sections appear.
 - **Frontmatter & structure validation** via an inline Python script that verifies `SKILL.md` starts with valid YAML frontmatter containing the required keys (`name: kodama`, `description:`).
 - **Markdown linting** via `DavidAnson/markdownlint-cli2-action` across root and example Markdown files.
 
