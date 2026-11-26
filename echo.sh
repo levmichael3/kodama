@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
-# kodama echo — a quiet forest spirit for your repo.
-# Cuts through repository noise, echoes back actionable signals.
-#
-# Outputs a BLUF-first, zero-bloat signal summary to $GITHUB_OUTPUT (as `echo`)
-# and to $GITHUB_STEP_SUMMARY when available. Facts survive verbatim; no AI
-# calls, no network, no secrets required.
+# kodama echo — quiet signal from your repo.
 set -euo pipefail
 
 MODE="${KODAMA_MODE:-summary}"
@@ -19,71 +14,99 @@ if [[ -n "$BASE_SHA" && "$BASE_SHA" != "0000000000000000000000000000000000000000
   RANGE="$BASE_SHA..$HEAD_SHA"
 fi
 
-if [[ -n "$RANGE" ]] && git rev-parse --verify "$BASE_SHA" >/dev/null 2>&1; then
+valid_range() {
+  [[ -n "$RANGE" ]] && git rev-parse --verify "$BASE_SHA" >/dev/null 2>&1
+}
+
+FILES="" TOTAL_FILES=0 SHORTSTAT="" COMMITS=""
+
+if valid_range; then
   FILES=$(git diff --name-only "$RANGE" 2>/dev/null | head -n "$MAX_FILES" || true)
-  STAT=$(git diff --stat "$RANGE" 2>/dev/null | tail -n 5 || true)
+  TOTAL_FILES=$(git diff --name-only "$RANGE" 2>/dev/null | wc -l | tr -d ' ' || echo 0)
+  SHORTSTAT=$(git diff --shortstat "$RANGE" 2>/dev/null || true)
+  COMMITS=$(git log --oneline "$RANGE" 2>/dev/null | head -n 10 || true)
 else
   FILES=$(git diff --name-only HEAD 2>/dev/null | head -n "$MAX_FILES" || true)
-  STAT=$(git diff --stat HEAD 2>/dev/null | tail -n 5 || true)
+  TOTAL_FILES=$(git diff --name-only HEAD 2>/dev/null | wc -l | tr -d ' ' || echo 0)
+  SHORTSTAT=$(git diff --shortstat HEAD 2>/dev/null || true)
 fi
 
-COMMITS=""
-if [[ -n "$RANGE" ]] && git rev-parse --verify "$BASE_SHA" >/dev/null 2>&1; then
-  COMMITS=$(git log --oneline "$RANGE" 2>/dev/null | head -n 10 || true)
+# --- build compact signal line -----------------------------------------------
+N_COMMITS=0
+[[ -n "$COMMITS" ]] && N_COMMITS=$(printf '%s' "$COMMITS" | grep -c . || true)
+
+INS=$(printf '%s' "$SHORTSTAT" | grep -oE '[0-9]+ insertion' | grep -oE '^[0-9]+' || true)
+DEL=$(printf '%s' "$SHORTSTAT" | grep -oE '[0-9]+ deletion' | grep -oE '^[0-9]+' || true)
+INS="${INS:-0}"; DEL="${DEL:-0}"
+
+SIGNAL_PARTS=()
+if [[ $N_COMMITS -gt 0 ]]; then
+  [[ $N_COMMITS -eq 1 ]] && SIGNAL_PARTS+=("1 commit") || SIGNAL_PARTS+=("$N_COMMITS commits")
 fi
+if [[ "$TOTAL_FILES" -gt 0 ]]; then
+  [[ "$TOTAL_FILES" -eq 1 ]] && SIGNAL_PARTS+=("1 file") || SIGNAL_PARTS+=("$TOTAL_FILES files")
+fi
+if [[ "$INS" != "0" || "$DEL" != "0" ]]; then
+  SIGNAL_PARTS+=("+${INS} −${DEL}")
+fi
+
+SIGNAL=""
+for part in "${SIGNAL_PARTS[@]}"; do
+  [[ -n "$SIGNAL" ]] && SIGNAL="$SIGNAL · $part" || SIGNAL="$part"
+done
 
 # --- compose echo -------------------------------------------------------------
 ECHO_FILE="$(mktemp)"
 {
-  echo "## 🌳 kodama echo — $MODE"
+  echo "## 🌳 kodama echo"
   echo ""
+  [[ -n "$SIGNAL" ]] && { echo "_${SIGNAL}_"; echo ""; }
   case "$MODE" in
     review)
-      echo "**Bottom line up front:** review the changed files below; facts (paths, flags, thresholds) are quoted verbatim from the diff."
+      echo "_Here's what changed — facts quoted verbatim from the diff._"
+      echo ""
       ;;
     calm)
-      echo "**Breathe.** One thing at a time. The forest keeps what matters; the rest is leaves."
+      echo "_One thing at a time. Start with the smallest file below._"
       echo ""
-      echo "Pick the smallest next step from the signal below and do only that."
-      ;;
-    summary | *)
-      echo "**Bottom line up front:** actionable signals from this change, noise removed."
       ;;
   esac
-  echo ""
+
   if [[ -n "$COMMITS" ]]; then
     echo "### Commits"
     echo ""
-    echo '```text'
-    echo "$COMMITS"
-    echo '```'
+    while IFS= read -r line; do
+      sha="${line%% *}"
+      msg="${line#* }"
+      echo "- \`${sha}\` ${msg}"
+    done <<< "$COMMITS"
     echo ""
   fi
+
   if [[ -n "$FILES" ]]; then
-    echo "### Changed files (max $MAX_FILES)"
+    echo "### Changed files"
     echo ""
-    echo "$FILES" | sed 's/^/- `/' | sed 's/$/`/'
+    while IFS= read -r f; do
+      echo "- \`${f}\`"
+    done <<< "$FILES"
+    if [[ "$TOTAL_FILES" -gt "$MAX_FILES" ]]; then
+      echo "_…and $(( TOTAL_FILES - MAX_FILES )) more (showing ${MAX_FILES})_"
+    fi
     echo ""
   else
-    echo "_No file changes detected in range — nothing to echo back._"
+    echo "_No file changes detected._"
     echo ""
   fi
-  if [[ -n "$STAT" ]]; then
-    echo "### Diff stat"
-    echo ""
-    echo '```text'
-    echo "$STAT"
-    echo '```'
-    echo ""
-  fi
+
   if [[ -n "$CONTEXT" ]]; then
-    echo "### Given context (verbatim)"
+    echo "### Context"
     echo ""
     echo "$CONTEXT"
     echo ""
   fi
+
   echo "---"
-  echo "_kodama (木霊) — the echo that answers back from the forest._"
+  echo "_木霊_"
 } >"$ECHO_FILE"
 
 # --- emit ---------------------------------------------------------------------
