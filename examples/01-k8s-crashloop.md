@@ -1,4 +1,4 @@
-# Example 1: Kubernetes `CrashLoopBackOff` + `/kodama`
+# Example 1: Kubernetes `CrashLoopBackOff` + `/echo`
 
 ## User
 
@@ -20,7 +20,7 @@ kubectl logs checkout-worker-7d9f8b6c4-x2k9p -n prod --previous
 
 ---
 
-## User: `/kodama`
+## User: `/echo`
 
 ## `kodama` (Plain-Language Translation)
 

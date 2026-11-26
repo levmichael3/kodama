@@ -51,7 +51,7 @@ jobs:
           assert desc, "description is required in frontmatter"
           assert len(desc) >= 20, "description looks too short"
 
-          for section in ("Core Communication Rules", "Clean Artifact Mode", "/kodama"):
+          for section in ("Core Communication Rules", "Clean Artifact Mode", "/echo"):
               assert section in text, f"SKILL.md missing section: {section}"
 
           print("SKILL.md frontmatter & structure OK")

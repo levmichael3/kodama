@@ -1,4 +1,4 @@
-# Example 4: Wordy Ticket to Crisp ADR + `/kodama`
+# Example 4: Wordy Ticket to Crisp ADR + `/echo`
 
 ## User
 
@@ -63,7 +63,7 @@ Deploy a transaction-mode connection pooler as a dedicated `Deployment` (`pooler
 
 ---
 
-## User: `/kodama`
+## User: `/echo`
 
 ## `kodama` (Plain-Language Translation)
 

@@ -4,16 +4,21 @@
 
 # 🌳 kodama 木霊
 
-**Pinpoint, vendor-agnostic DevOps & SRE speak — plus `/kodama` to translate dense logs, errors, and jargon into plain language without losing a single flag.**
+**A quiet forest spirit for your codebase and your daily life — plus `/echo` to translate dense logs, errors, tangled thoughts, and jargon into plain language without losing a single flag.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Format: Agent Skill](https://img.shields.io/badge/Format-Agent_Skill-blue.svg)](SKILL.md)
 [![Works with](https://img.shields.io/badge/Works_with-Claude_Cursor_OpenCode_Codex-lightgrey.svg)](#compatibility--installation)
 [![CI](https://github.com/levmichael3/kodama/actions/workflows/ci.yml/badge.svg)](https://github.com/levmichael3/kodama/actions/workflows/ci.yml)
+[![kodama echo](https://img.shields.io/badge/Action-kodama_echo-green.svg)](#github-action--kodama-echo)
 
 > *Kodama (木霊) — the tree spirit of Japanese folklore. It lives in old trees,
-> and its voice is the echo that answers you back from the forest. Speak your
-> densest logs into the trees; a clear voice answers back.*
+> and its voice is the echo that answers you back from the forest.*
+>
+> *A quiet forest spirit for your codebase and your daily life. Kodama cuts
+> through repository noise, echoes back actionable signals, and keeps your
+> mental state healthy, your cognitive abilities relaxed. Type `/echo` —
+> and listen.*
 
 ---
 
@@ -25,8 +30,8 @@ AI agents usually fail DevOps in one of two ways: they either drown you in fille
 
 1. **Pinpoint DevOps & SRE Speak (Default):** Leads with the bottom line, uses exact vendor-agnostic operational vocabulary (Kubernetes, declarative IaC, CI/CD, GitOps, OpenTelemetry), and flags destructive actions before you run them.
 2. **Clean Artifact Mode:** Turns incident notes, runbooks, postmortems (RCAs), and Architecture Decision Records (ADRs) into scannable, zero-bloat docs that both engineers and stakeholders can read.
-3. **`/kodama` Plain-Language Mode:** Inspired by [`luchasarie/bro-skill`](https://github.com/luchasarie/bro-skill).
-   Type `/kodama` after a dense reply — or paste a raw stack trace, state-lock error, or RFC after `/kodama` — to get it explained like a sharp teammate over coffee, while keeping every command, path, port, and exit code **100% verbatim**.
+3. **`/echo` Plain-Language Mode:** Inspired by [`luchasarie/bro-skill`](https://github.com/luchasarie/bro-skill).
+   Type `/echo` after a dense reply — or paste a raw stack trace, state-lock error, or RFC after `/echo` — to get it explained like a sharp teammate over coffee, while keeping every command, path, port, and exit code **100% verbatim**.
 
 **What it is:** a portable skill + slash-command pair. No dependencies, no API keys, no cloud lock-in.
 **What it isn't:** a SaaS product, a monitoring agent, or a replacement for reading your alerts.
@@ -39,10 +44,10 @@ Supported platforms include Claude Code, Cursor, OpenCode, OpenAI Codex, and Her
 
 | Tool             | Skill location                              | Slash command / invocation                         |
 | :--------------- | :------------------------------------------ | :------------------------------------------------- |
-| **Claude Code**  | `~/.claude/skills/kodama/SKILL.md`          | `/kodama` (`~/.claude/commands/kodama.md`)         |
-| **Cursor**       | `~/.cursor/skills/kodama/SKILL.md`          | `/kodama`                                          |
-| **OpenCode**     | `~/.config/opencode/skills/kodama/SKILL.md` | `/kodama` (`~/.config/opencode/command/kodama.md`) |
-| **OpenAI Codex** | `~/.codex/skills/kodama/SKILL.md`           | `$kodama` or via `/skills`                         |
+| **Claude Code**  | `~/.claude/skills/kodama/SKILL.md`          | `/echo` (`~/.claude/commands/echo.md`)         |
+| **Cursor**       | `~/.cursor/skills/kodama/SKILL.md`          | `/echo`                                          |
+| **OpenCode**     | `~/.config/opencode/skills/kodama/SKILL.md` | `/echo` (`~/.config/opencode/command/echo.md`) |
+| **OpenAI Codex** | `~/.codex/skills/kodama/SKILL.md`           | `/echo` or via `/skills`                         |
 | **Hermes Agent** | `~/.hermes/skills/kodama/SKILL.md`          | Auto-loaded skill                                  |
 
 > **Note:** OpenCode uses the singular `command/` directory (not `commands/`). The installer handles this for you.
@@ -64,20 +69,44 @@ chmod +x install.sh
 ./install.sh
 ```
 
-Restart your agent session after installing, then type `/kodama` anytime.
+Restart your agent session after installing, then type `/echo` anytime.
+
+---
+
+## GitHub Action — `kodama echo` 🌲
+
+The same forest spirit, running natively in your CI. `kodama echo` cuts through PR noise and echoes back actionable signals — commits, changed files, diff stats — BLUF-first, facts verbatim. No AI calls, no network, no secrets required.
+
+```yaml
+- name: kodama echo (summary)
+  id: echo
+  uses: levmichael3/kodama@v1
+  with:
+    mode: summary # or: review | calm
+```
+
+Copy [`examples/workflow-echo.yml`](examples/workflow-echo.yml) into your repo's `.github/workflows/` to post the echo as a PR comment on every pull request.
+
+| Input     | Default     | Meaning                                                        |
+| :-------- | :---------- | :------------------------------------------------------------- |
+| `mode`    | `summary`   | `summary` (signals), `review` (file focus), `calm` (one step)  |
+| `context` | `""`        | Extra context echoed back verbatim (SLOs, decisions, notes)    |
+| `max_files` | `20`      | Maximum changed files listed                                   |
+
+The echo is available as step output (`steps.echo.outputs.echo`) and in the job summary.
 
 ---
 
 ## Examples 🌲
 
-Each example shows the pinpoint answer first, then the `/kodama` plain-language echo:
+Each example shows the pinpoint answer first, then the `/echo` plain-language echo:
 
-- [`examples/01-k8s-crashloop.md`](examples/01-k8s-crashloop.md) — Kubernetes `CrashLoopBackOff` diagnosis, then `/kodama` plain-language translation.
-- [`examples/02-iac-state-lock.md`](examples/02-iac-state-lock.md) — Pasting a raw declarative IaC state-lock error into `/kodama`.
+- [`examples/01-k8s-crashloop.md`](examples/01-k8s-crashloop.md) — Kubernetes `CrashLoopBackOff` diagnosis, then `/echo` plain-language translation.
+- [`examples/02-iac-state-lock.md`](examples/02-iac-state-lock.md) — Pasting a raw declarative IaC state-lock error into `/echo`.
 - [`examples/03-clean-runbook.md`](examples/03-clean-runbook.md) — Zero-bloat ingress-gateway 5xx runbook via Clean Artifact Mode.
-- [`examples/04-wordy-ticket-to-adr.md`](examples/04-wordy-ticket-to-adr.md) — A broad stakeholder ticket distilled into a crisp ADR, then `/kodama` translation.
+- [`examples/04-wordy-ticket-to-adr.md`](examples/04-wordy-ticket-to-adr.md) — A broad stakeholder ticket distilled into a crisp ADR, then `/echo` translation.
 
-### Example: Kubernetes `CrashLoopBackOff` + `/kodama`
+### Example: Kubernetes `CrashLoopBackOff` + `/echo`
 
 **User:**
 
@@ -99,7 +128,7 @@ Each example shows the pinpoint answer first, then the `/kodama` plain-language 
 
 **User:**
 
-> `/kodama`
+> `/echo`
 
 **`kodama` (Plain-Language Translation):**
 
@@ -133,7 +162,7 @@ The repository includes [`.github/workflows/ci.yml`](.github/workflows/ci.yml) c
 
 ## Contributing
 
-Want to add a new runbook, incident pattern, or IaC failure mode? See [CONTRIBUTING.md](CONTRIBUTING.md) for example format, naming (`NN-slug.md`), and the `/kodama` translation requirement.
+Want to add a new runbook, incident pattern, or IaC failure mode? See [CONTRIBUTING.md](CONTRIBUTING.md) for example format, naming (`NN-slug.md`), and the `/echo` translation requirement.
 
 ---
 
@@ -149,4 +178,4 @@ Every contribution grows a pet! This repo supports [GitAnimals](https://www.gita
 
 ## Credits & License
 
-Inspired by [`luchasarie/bro-skill`](https://github.com/luchasarie/bro-skill) and named for the [kodama (木霊), the tree spirit of Japanese folklore](https://hyakumonogatari.com/2012/08/05/kodama-the-tree-spirit/) — the echo that answers back from the forest. Released under the [MIT License](LICENSE).
+Inspired by [`luchasarie/bro-skill`](https://github.com/luchasarie/bro-skill) and named for the [kodama (木霊), the tree spirit of Japanese folklore](https://hyakumonogatari.com/2012/08/05/echo-the-tree-spirit/) — the echo that answers back from the forest. Released under the [MIT License](LICENSE).

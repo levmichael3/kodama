@@ -1,0 +1,37 @@
+name: "kodama echo"
+description: "A quiet forest spirit for your repo — cuts through noise, echoes back actionable signals."
+author: "levmichael3"
+
+branding:
+  icon: "activity"
+  color: "green"
+
+inputs:
+  mode:
+    description: "What to echo back: summary, review, or calm. Defaults to summary."
+    required: false
+    default: "summary"
+  context:
+    description: "Extra context to include in the echo (e.g. recent decisions, SLOs, on-call notes)."
+    required: false
+    default: ""
+  max_files:
+    description: "Maximum number of changed files to read for signal extraction."
+    required: false
+    default: "20"
+
+outputs:
+  echo:
+    description: "The echoed signal — BLUF-first, zero-bloat, facts verbatim."
+
+runs:
+  using: "composite"
+  steps:
+    - name: Echo the forest back
+      shell: bash
+      env:
+        KODAMA_MODE: ${{ inputs.mode }}
+        KODAMA_CONTEXT: ${{ inputs.context }}
+        KODAMA_MAX_FILES: ${{ inputs.max_files }}
+      run: |
+        "${{ github.action_path }}/echo.sh"

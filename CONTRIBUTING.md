@@ -44,7 +44,7 @@ safety warnings before destructive ops>
 
 ## User
 
-> `/kodama` (+ optional pasted text)
+> `/echo` (+ optional pasted text)
 
 ## `kodama` (Plain-Language Translation)
 
@@ -59,7 +59,7 @@ every command, flag, path, port, and exit code 100% verbatim>
 - **Safety first.** Any `destroy`, `kubectl delete`, `force-unlock`, or force-push gets a dry-run / `plan` step and a warning.
 - **Vendor-agnostic.** Prefer Kubernetes APIs, OCI, declarative HCL, GitOps, OpenTelemetry, POSIX tools. Name a vendor only when the user did.
 
-**Rules for the `/kodama` translation:**
+**Rules for the `/echo` translation:**
 
 - Re-explain, don't re-answer. No new tools, no new diagnosis.
 - Take the space clarity needs — simpler, not necessarily shorter.
@@ -108,7 +108,7 @@ CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) runs the same checks
 ## Pull request checklist
 
 - [ ] Example filename is next sequential number (`NN-slug.md`, currently `05-...`).
-- [ ] File has User prompt → pinpoint answer → `/kodama` → plain translation.
+- [ ] File has User prompt → pinpoint answer → `/echo` → plain translation.
 - [ ] All commands, flags, paths, ports, exit codes identical in both modes.
 - [ ] README `## Examples` bullet added.
 - [ ] `shellcheck install.sh` passes (if touched).

@@ -1,8 +1,8 @@
-# Example 2: Pasting a Raw IaC State Lock Error into `/kodama`
+# Example 2: Pasting a Raw IaC State Lock Error into `/echo`
 
 ## User
 
-> `/kodama`
+> `/echo`
 >
 > ```text
 > Error: Error acquiring the state lock

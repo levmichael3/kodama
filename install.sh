@@ -19,15 +19,15 @@ install_skill() {
 install_command() {
   local cmd_dir="$1"
   mkdir -p "$cmd_dir"
-  cat >"$cmd_dir/kodama.md" <<'EOF'
+  cat >"$cmd_dir/echo.md" <<'EOF'
 ---
 description: Re-explain the last reply or pasted DevOps/infra text in plain human language with all technical facts intact.
 ---
-Read and apply the `kodama` skill in `/kodama` translation mode to the previous assistant response (or the text below if provided). Keep all commands, flags, file paths, and error codes verbatim.
+Read and apply the `kodama` skill in `/echo` translation mode to the previous assistant response (or the text below if provided). Keep all commands, flags, file paths, and error codes verbatim.
 
 $ARGUMENTS
 EOF
-  echo "Installed slash command -> $cmd_dir/kodama.md"
+  echo "Installed slash command -> $cmd_dir/echo.md"
 }
 
 installed_any=false
@@ -70,4 +70,4 @@ if [[ "$installed_any" == false ]]; then
   exit 1
 fi
 
-echo "Done. Restart your agent session and use /kodama anytime."
+echo "Done. Restart your agent session and use /echo anytime."
